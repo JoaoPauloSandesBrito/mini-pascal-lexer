@@ -1,0 +1,32 @@
+Program	Palavra reservada
+Piloto	Identificador
+;	Símbolo especial
+var	Palavra reservada
+Nota1	Identificador
+,	Símbolo especial
+Nota2	Identificador
+,	Símbolo especial
+Media_das_medias	Identificador
+:	Símbolo especial
+real	Palavra reservada
+;	Símbolo especial
+begin	Palavra reservada
+Media_das_medias	Identificador
+:=	Atribuição
+(	Símbolo especial
+Nota1	Identificador
++	Operador aritmético
+Nota2	Identificador
+)	Símbolo especial
+/	Operador aritmético
+2.0	Número real
+;	Símbolo especial
+writeln	Identificador
+(	Símbolo especial
+"Média = "	Constante string
+,	Símbolo especial
+Media_das_medias	Identificador
+)	Símbolo especial
+;	Símbolo especial
+end	Palavra reservada
+.	Fim

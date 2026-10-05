@@ -1,0 +1,8 @@
+program comentarios;
+/* Este comentário inteiro deve ser ignorado.
+   Ele também testa a contagem de linhas. */
+var resultado: real;
+begin
+    resultado := 10.0; /* comentário após comando */
+end.
+

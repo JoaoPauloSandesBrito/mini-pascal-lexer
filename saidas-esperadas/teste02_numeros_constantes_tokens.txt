@@ -1,0 +1,48 @@
+program	Palavra reservada
+valores	Identificador
+;	Símbolo especial
+var	Palavra reservada
+inteiro	Identificador
+:	Símbolo especial
+integer	Palavra reservada
+;	Símbolo especial
+var	Palavra reservada
+decimal	Identificador
+,	Símbolo especial
+cientifico	Identificador
+:	Símbolo especial
+real	Palavra reservada
+;	Símbolo especial
+var	Palavra reservada
+letra	Identificador
+:	Símbolo especial
+char	Palavra reservada
+;	Símbolo especial
+var	Palavra reservada
+mensagem	Identificador
+:	Símbolo especial
+string	Palavra reservada
+;	Símbolo especial
+begin	Palavra reservada
+inteiro	Identificador
+:=	Atribuição
+13	Número inteiro
+;	Símbolo especial
+decimal	Identificador
+:=	Atribuição
+1.33	Número real
+;	Símbolo especial
+cientifico	Identificador
+:=	Atribuição
+24.40e-04	Número real
+;	Símbolo especial
+letra	Identificador
+:=	Atribuição
+'A'	Constante caractere
+;	Símbolo especial
+mensagem	Identificador
+:=	Atribuição
+"Compiladores 2026.2"	Constante string
+;	Símbolo especial
+end	Palavra reservada
+.	Fim

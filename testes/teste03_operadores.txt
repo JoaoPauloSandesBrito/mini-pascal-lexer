@@ -1,0 +1,10 @@
+program operadores;
+var a,b,c: integer;
+begin
+    a := b + c - 2 * 3 / 4 mod 2;
+    if a >= b then a := b;
+    if a <= b then a := b;
+    if a <> b then a := b;
+    if not a = b and a > 0 or b < 10 then a := 1;
+end.
+

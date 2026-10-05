@@ -1,0 +1,13 @@
+program valores;
+var inteiro: integer;
+var decimal, cientifico: real;
+var letra: char;
+var mensagem: string;
+begin
+    inteiro := 13;
+    decimal := 1.33;
+    cientifico := 24.40e-04;
+    letra := 'A';
+    mensagem := "Compiladores 2026.2";
+end.
+

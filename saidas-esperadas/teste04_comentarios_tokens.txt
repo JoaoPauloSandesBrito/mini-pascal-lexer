@@ -1,0 +1,15 @@
+program	Palavra reservada
+comentarios	Identificador
+;	Símbolo especial
+var	Palavra reservada
+resultado	Identificador
+:	Símbolo especial
+real	Palavra reservada
+;	Símbolo especial
+begin	Palavra reservada
+resultado	Identificador
+:=	Atribuição
+10.0	Número real
+;	Símbolo especial
+end	Palavra reservada
+.	Fim

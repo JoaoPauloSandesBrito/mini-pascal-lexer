@@ -1,0 +1,10 @@
+program erros;
+var x: real;
+begin
+    x := 12e+;
+    x := 99abc;
+    x := 'AB';
+    x := @;
+    write("texto sem fechamento);
+end.
+

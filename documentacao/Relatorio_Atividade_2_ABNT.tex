@@ -1,0 +1,200 @@
+% Compilar com: latexmk -pdf Relatorio_Atividade_2_ABNT.tex
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\IfFileExists{brazil.ldf}{\usepackage[brazil]{babel}}{\usepackage[english]{babel}\frenchspacing}
+\usepackage{mathptmx}
+\usepackage{microtype}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{indentfirst}
+\usepackage{titlesec}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{float}
+\usepackage{needspace}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+
+\AtBeginDocument{%
+  \renewcommand{\tablename}{Tabela}%
+  \renewcommand{\refname}{Referências}%
+}
+
+\geometry{top=3cm,left=3cm,right=2cm,bottom=2cm}
+\setlength{\parindent}{1.25cm}
+\setlength{\parskip}{0pt}
+\onehalfspacing
+\emergencystretch=2em
+\hyphenpenalty=8000
+
+\titleformat{\section}
+  {\normalfont\bfseries\MakeUppercase}{\thesection}{0.7em}{}
+\titlespacing*{\section}{0pt}{1.2\baselineskip}{0.5\baselineskip}
+
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\renewcommand{\arraystretch}{1.12}
+
+\definecolor{codigoFundo}{RGB}{246,247,249}
+\definecolor{codigoBorda}{RGB}{205,210,217}
+\lstset{
+  basicstyle=\ttfamily\small,
+  backgroundcolor=\color{codigoFundo},
+  frame=single,
+  rulecolor=\color{codigoBorda},
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  breaklines=true
+}
+
+\hypersetup{
+  pdftitle={Analisador Léxico para Mini Pascal},
+  pdfauthor={João Paulo Sandes Brito},
+  pdfsubject={Atividade 2 da disciplina de Compiladores},
+  pdfkeywords={analisador léxico, Java, Mini Pascal}
+}
+
+\begin{document}
+
+\begin{center}
+  {\bfseries\MakeUppercase{Analisador léxico para a linguagem Mini\_Pascal}}\par
+  \vspace{0.8\baselineskip}
+  João Paulo Sandes Brito\par
+  \small Universidade Estadual do Sudoeste da Bahia -- UESB\par
+\end{center}
+
+\vspace{0.5\baselineskip}
+
+\renewcommand{\abstractname}{Resumo}
+\begin{abstract}
+\noindent
+O trabalho apresenta um analisador léxico para Mini\_Pascal. O programa foi escrito em Java 17, possui interface em Swing e gera pares no formato lexema--token. Foram usados seis arquivos de teste, incluindo um conjunto com erros léxicos.
+
+\vspace{0.3\baselineskip}
+\noindent\textbf{Palavras-chave}: análise léxica; Java; Mini\_Pascal.
+\end{abstract}
+
+\begin{center}
+  \textbf{LEXICAL ANALYZER FOR THE MINI\_PASCAL LANGUAGE}
+\end{center}
+
+\renewcommand{\abstractname}{Abstract}
+\begin{abstract}
+\noindent
+This paper presents a lexical analyzer for Mini\_Pascal. The program was written in Java 17, provides a Swing interface and generates lexeme--token pairs. Six input files were used for testing, including lexical errors.
+
+\vspace{0.3\baselineskip}
+\noindent\textbf{Keywords}: lexical analysis; Java; Mini\_Pascal.
+\end{abstract}
+
+\section{Objetivo}
+
+O analisador lê um arquivo-fonte e separa seu conteúdo em tokens. Espaços, quebras de linha e comentários são ignorados. O resultado pode ser visto na interface ou salvo em arquivo texto.
+
+A implementação usa transições determinísticas e mantém a linha e a coluna de cada lexema. Essa organização corresponde ao funcionamento usual da etapa léxica de um compilador \cite{aho2007}.
+
+\section{Classes léxicas}
+
+\begin{table}[H]
+\centering
+\caption{Classes reconhecidas}
+\small
+\begin{tabularx}{\textwidth}{p{3.1cm}Y Y}
+\toprule
+\textbf{Classe} & \textbf{Exemplos} & \textbf{Token} \\
+\midrule
+Palavra reservada & \texttt{program}, \texttt{begin}, \texttt{integer} & Palavra reservada \\
+Identificador & \texttt{x}, \texttt{var2}, \texttt{media\_geral} & Identificador \\
+Número & \texttt{13}, \texttt{1.33}, \texttt{24.40e-04} & Inteiro ou real \\
+Constante & \texttt{'A'}, \texttt{"texto"} & Caractere ou string \\
+Operador & \texttt{+}, \texttt{mod}, \texttt{>=}, \texttt{and} & Aritmético, relacional ou lógico \\
+Símbolo & \texttt{( ) , ; :}, \texttt{:=}, \texttt{.} & Especial, atribuição ou fim \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Palavras reservadas não diferenciam maiúsculas de minúsculas, mas o lexema original é mantido. Os termos \texttt{read}, \texttt{write} e \texttt{writeln} seguem o exemplo da atividade e são classificados como identificadores. O símbolo \texttt{=} é tratado como operador relacional.
+
+\section{Implementação}
+
+\begin{table}[H]
+\centering
+\caption{Principais classes do programa}
+\small
+\begin{tabularx}{\textwidth}{p{4cm}Y}
+\toprule
+\textbf{Classe} & \textbf{Função} \\
+\midrule
+\texttt{Lexer} & Reconhecer lexemas e produzir tokens. \\
+\texttt{Token/TokenType} & Guardar lexema, tipo, linha, coluna e mensagem. \\
+\texttt{AnalysisFileService} & Ler a entrada e gravar a saída. \\
+\texttt{MainFrame} & Exibir a interface gráfica. \\
+\texttt{Main} & Iniciar o programa. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+O método \texttt{nextToken()} lê um token por chamada. O método \texttt{scanAll()} repete a operação até o fim do arquivo. A decisão inicial depende do primeiro caractere do lexema:
+
+\begin{lstlisting}
+letra ou '_' -> identificador ou palavra reservada
+digito       -> numero inteiro ou real
+aspas        -> constante
+operador     -> forma simples ou composta
+outro        -> erro lexico
+\end{lstlisting}
+
+\section{Erros léxicos}
+
+Os erros registram lexema, linha, coluna e mensagem. Depois do registro, a leitura continua no próximo ponto válido. São detectados símbolos desconhecidos, expoentes incompletos, números unidos a identificadores, comentários ou strings sem fechamento e constantes de caractere inválidas.
+
+\Needspace{16\baselineskip}
+\section{Testes}
+
+\begin{table}[H]
+\centering
+\caption{Casos executados}
+\small
+\begin{tabularx}{\textwidth}{p{2cm}Y c c}
+\toprule
+\textbf{Caso} & \textbf{Conteúdo} & \textbf{Tokens} & \textbf{Erros} \\
+\midrule
+Teste 01 & Programa básico & 50 & 0 \\
+Teste 02 & Números e constantes & 48 & 0 \\
+Teste 03 & Operadores & 74 & 0 \\
+Teste 04 & Comentários & 15 & 0 \\
+Teste 05 & Entradas inválidas & 30 & 5 \\
+Teste 06 & Maiúsculas, sublinhado e Unicode & 32 & 0 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Os seis arquivos produziram 249 tokens. As saídas foram comparadas com os arquivos esperados. O teste automatizado também executou vinte verificações.
+
+\section{Execução}
+
+No Windows, o programa pode ser aberto por \texttt{executar.bat}. O JAR também aceita entrada e saída pela linha de comando:
+
+\begin{lstlisting}
+java -jar dist\MiniPascal-Lexico.jar entrada.txt saida.txt
+\end{lstlisting}
+
+É necessário ter Java 17 ou superior. Não é preciso usar uma IDE.
+
+\section{Considerações finais}
+
+O programa reconhece as classes previstas, informa erros sem interromper toda a leitura e gera a listagem lexema--token. Os arquivos de teste e o JAR acompanham o código-fonte.
+
+\begin{thebibliography}{9}
+\setlength{\itemsep}{0.4\baselineskip}
+
+\bibitem{aho2007}
+AHO, Alfred V.; LAM, Monica S.; SETHI, Ravi; ULLMAN, Jeffrey D. \textbf{Compilers: principles, techniques, and tools}. 2. ed. Boston: Pearson Addison-Wesley, 2007.
+
+\end{thebibliography}
+
+\end{document}

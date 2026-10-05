@@ -1,0 +1,30 @@
+program	Palavra reservada
+erros	Identificador
+;	Símbolo especial
+var	Palavra reservada
+x	Identificador
+:	Símbolo especial
+real	Palavra reservada
+;	Símbolo especial
+begin	Palavra reservada
+x	Identificador
+:=	Atribuição
+12e+	Erro léxico
+;	Símbolo especial
+x	Identificador
+:=	Atribuição
+99abc	Erro léxico
+;	Símbolo especial
+x	Identificador
+:=	Atribuição
+'AB'	Erro léxico
+;	Símbolo especial
+x	Identificador
+:=	Atribuição
+@	Erro léxico
+;	Símbolo especial
+write	Identificador
+(	Símbolo especial
+"texto sem fechamento);	Erro léxico
+end	Palavra reservada
+.	Fim

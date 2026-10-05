@@ -1,0 +1,74 @@
+program	Palavra reservada
+operadores	Identificador
+;	Símbolo especial
+var	Palavra reservada
+a	Identificador
+,	Símbolo especial
+b	Identificador
+,	Símbolo especial
+c	Identificador
+:	Símbolo especial
+integer	Palavra reservada
+;	Símbolo especial
+begin	Palavra reservada
+a	Identificador
+:=	Atribuição
+b	Identificador
++	Operador aritmético
+c	Identificador
+-	Operador aritmético
+2	Número inteiro
+*	Operador aritmético
+3	Número inteiro
+/	Operador aritmético
+4	Número inteiro
+mod	Operador aritmético
+2	Número inteiro
+;	Símbolo especial
+if	Palavra reservada
+a	Identificador
+>=	Operador relacional
+b	Identificador
+then	Palavra reservada
+a	Identificador
+:=	Atribuição
+b	Identificador
+;	Símbolo especial
+if	Palavra reservada
+a	Identificador
+<=	Operador relacional
+b	Identificador
+then	Palavra reservada
+a	Identificador
+:=	Atribuição
+b	Identificador
+;	Símbolo especial
+if	Palavra reservada
+a	Identificador
+<>	Operador relacional
+b	Identificador
+then	Palavra reservada
+a	Identificador
+:=	Atribuição
+b	Identificador
+;	Símbolo especial
+if	Palavra reservada
+not	Operador lógico
+a	Identificador
+=	Operador relacional
+b	Identificador
+and	Operador lógico
+a	Identificador
+>	Operador relacional
+0	Número inteiro
+or	Operador lógico
+b	Identificador
+<	Operador relacional
+10	Número inteiro
+then	Palavra reservada
+a	Identificador
+:=	Atribuição
+1	Número inteiro
+;	Símbolo especial
+end	Palavra reservada
+.	Fim

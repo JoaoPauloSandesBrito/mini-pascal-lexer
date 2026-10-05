@@ -1,0 +1,7 @@
+Program Piloto;
+var Nota1, Nota2, Media_das_medias: real;
+begin
+    Media_das_medias := (Nota1 + Nota2) / 2.0;
+    writeln("Média = ", Media_das_medias);
+end.
+
